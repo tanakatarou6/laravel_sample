@@ -1,6 +1,8 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DrillsTableSeeder extends Seeder
 {
@@ -11,28 +13,23 @@ class DrillsTableSeeder extends Seeder
      */
     public function run()
     {
-        // ダミーデータを複数登録する
-        $params =
-            [
+        for ($i = 1; $i < 10; $i++) {
+
+            // ダミーデータを複数登録する
+            $params[$i] =
                 [
-                    'title' => '1つ目の練習',
-                    'category_name' => 'テスト1',
-                    'problem_id' => '1',
-                    'user_id' => '1',
-                ],
-                [
-                    'title' => '2つ目の練習',
-                    'category_name' => 'テスト2',
-                    'problem_id' => '2',
-                    'user_id' => '2',
-                ]
-            ];
+                    'title' => $i . '個目の練習',
+                    'category_name' => 'テスト' . $i,
+                    'problem_id' => $i,
+                    'user_id' => ($i % 2) + 1,
+                ];
+        }
         $now = Carbon::now();
         foreach ($params as $param) {
             $param['created_at'] = $now;
             $param['updated_at'] = $now;
-
-            DB::table('users')->insert($param);
+            // print_r($param);
+            DB::table('drills')->insert($param);
         }
     }
 }

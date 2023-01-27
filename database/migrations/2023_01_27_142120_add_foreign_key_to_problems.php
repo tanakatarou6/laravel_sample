@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyToDrills extends Migration
+class AddForeignKeyToProblems extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class AddForeignKeyToDrills extends Migration
      */
     public function up()
     {
-        Schema::table('drills', function (Blueprint $table) {
-            $table->foreign('user_id')
+        Schema::table('problems', function (Blueprint $table) {
+            $table->foreign('drill_id')
                 ->references('id')
-                ->on('users');
+                ->on('drills');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeyToDrills extends Migration
      */
     public function down()
     {
-        Schema::table('drills', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+        Schema::table('problems', function (Blueprint $table) {
+            $table->dropForeign(['drill_id']);
         });
     }
 }

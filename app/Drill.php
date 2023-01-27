@@ -14,7 +14,7 @@ class Drill extends Model
     // モデルが指定した属性以外を持たなくなる
     // 【メリット】fillメソッドに対応しやすい。
     // 【デメリット】カラムが増えると都度追加する必要がある。
-    protected $fillable = ['title', 'category_name', 'problem0', 'problem1', 'problem2', 'problem3', 'problem4', 'problem5', 'problem6', 'problem7', 'problem8', 'problem9'];
+    protected $fillable = ['title', 'category_name', 'problem_id', 'user_id'];
 
     // 【guardedについて】
     // モデルから指定した属性が取り除かれる(カラムが増えてもほとんど変更しなくてよい)
@@ -23,5 +23,10 @@ class Drill extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function problem()
+    {
+        return $this->hasOne('App\Problem');
     }
 }

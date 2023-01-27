@@ -13,14 +13,13 @@ class DrillsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
 
             // ダミーデータを複数登録する
-            $params[$i] =
+            $params[] =
                 [
-                    'title' => $i . '個目の練習',
-                    'category_name' => 'テスト' . $i,
-                    'problem_id' => $i,
+                    'title' => ($i + 1) . '個目の練習',
+                    'category_name' => 'テスト' . ($i + 1),
                     'user_id' => ($i % 2) + 1,
                 ];
         }

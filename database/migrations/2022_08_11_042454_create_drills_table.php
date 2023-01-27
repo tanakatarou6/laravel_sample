@@ -17,7 +17,6 @@ class CreateDrillsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('category_name');
-            $table->unsignedBigInteger('problem_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

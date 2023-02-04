@@ -19,16 +19,16 @@ class ProblemsTableSeeder extends Seeder
             $params[] =
                 [
                     'drill_id' => $i,
-                    'problem_0' => $i . '-1の問題',
-                    'problem_1' => $i . '-2の問題',
-                    'problem_2' => $i . '-3の問題',
-                    'problem_3' => $i . '-4の問題',
-                    'problem_4' => $i . '-5の問題',
-                    'problem_5' => $i . '-6の問題',
-                    'problem_6' => $i . '-7の問題',
-                    'problem_7' => $i . '-8の問題',
-                    'problem_8' => $i . '-9の問題',
-                    'problem_9' => $i . '-10の問題'
+                    'problem0' => $i . '-1の問題',
+                    'problem1' => $i . '-2の問題',
+                    'problem2' => $i . '-3の問題',
+                    'problem3' => $i . '-4の問題',
+                    'problem4' => $i . '-5の問題',
+                    'problem5' => $i . '-6の問題',
+                    'problem6' => $i . '-7の問題',
+                    'problem7' => $i . '-8の問題',
+                    'problem8' => $i . '-9の問題',
+                    'problem9' => $i . '-10の問題'
                 ];
         }
         $now = Carbon::now();

@@ -113,8 +113,11 @@ class DrillsController extends Controller
 
         // $drill = Drill::find($id);
         $drill = Auth::user()->drills()->find($id);
+        $problem = Problem::find($id);
+        // dd($problem);
+        // dd($drill);
 
-        return view('drills.edit', ['drill' => $drill]);
+        return view('drills.edit', ['drill' => $drill], ['problem' => $problem]);
     }
 
     // 編集画面で修正した練習問題でDBに登録してある問題を更新するupdateアクション

@@ -2,7 +2,17 @@
 
 @section('content')
   <div class="container">
-    <h2>{{ __('Drill List') }}</h2>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <a href="{{ route('drills.new') }}" class="btn btn-primary">新規作成</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="mt-4">{{ __('Drill List') }}</h2>
     <div class="row">
 
       @foreach ($drills as $drill)

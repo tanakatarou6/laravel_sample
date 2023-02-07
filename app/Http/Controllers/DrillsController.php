@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Drill;
+use App\Problem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,8 +47,11 @@ class DrillsController extends Controller
             'problem9' => 'string|nullable|max:255'
         ]);
 
-        // モデルを使って、DBに登録する値をセット
+        // drillモデルインスタンスを生成
         $drill = new Drill;
+
+        // problemモデルインスタンスを生成
+        $problem = new Problem;
 
         // DBに登録する方法は2つある
         // ①.レコードを1つ1つ入れる方法
@@ -59,11 +63,28 @@ class DrillsController extends Controller
         // ②.fillメソッドを使って一気に入れる方法
         // $fillableを使用していないと、更新したくないレコードが更新されてしまうので注意
         // $drill->fill($request->all())->save();
-
         Auth::user()->drills()->save($drill->fill($request->all()));
 
-        // リダイレクトする
-        // その際、sessionフラッシュにメッセージを入れる
+        // dd($request);
+        // problemsテーブルに値を登録するため、postデータから値を取得・設定
+        $problem['problem0'] = $request->input('problem0');
+        $problem['problem1'] = $request->input('problem1');
+        $problem['problem2'] = $request->input('problem2');
+        $problem['problem3'] = $request->input('problem3');
+        $problem['problem4'] = $request->input('problem4');
+        $problem['problem5'] = $request->input('problem5');
+        $problem['problem6'] = $request->input('problem6');
+        $problem['problem7'] = $request->input('problem7');
+        $problem['problem8'] = $request->input('problem8');
+        $problem['problem9'] = $request->input('problem9');
+        // dd($problem);
+        $drill->problem()->save($problem->fill($request->all()));
+
+        $problem->fill($request->all())->save();
+        // dd($problem);
+        // dd($drill);
+
+        // リダイレクトし、その際、sessionフラッシュにメッセージを入れる
         return redirect('/drills')->with('flash_message', __('Registered.'));
     }
 
@@ -92,8 +113,11 @@ class DrillsController extends Controller
 
         // $drill = Drill::find($id);
         $drill = Auth::user()->drills()->find($id);
+        $problem = Problem::find($id);
+        // dd($problem);
+        // dd($drill);
 
-        return view('drills.edit', ['drill' => $drill]);
+        return view('drills.edit', ['drill' => $drill], ['problem' => $problem]);
     }
 
     // 編集画面で修正した練習問題でDBに登録してある問題を更新するupdateアクション

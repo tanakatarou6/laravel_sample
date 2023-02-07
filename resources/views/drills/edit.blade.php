@@ -43,7 +43,7 @@
                   <div class="col-md-6">
                     <input type="text" id="problem{{ $i - 1 }}"
                       class="form-control @error('problem' . ($i - 1)) is-invalid @enderror"
-                      name="problem{{ $i - 1 }}" value="{{ $drill['problem' . ($i - 1)] }}"
+                      name="problem{{ $i - 1 }}" value="{{ $problem['problem' . ($i - 1)] }}"
                       autocomplete="problem{{ $i - 1 }}" autofocus>
                     @error('problem' . ($i - 1))
                       <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>

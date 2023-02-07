@@ -6,7 +6,7 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <a href="{{ route('drills.new') }}" class="btn btn-primary">新規作成</a>
+            <a href="{{ route('drills.new') }}" class="btn btn-primary">{{ __('Create New') }}</a>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
 
               <form action="{{ route('drills.delete', $drill->id) }}" class="d-inline" method="POST">
                 @csrf
-                <button class="bnt btn-danger" onclick="return confirm('削除しますか?');">{{ __('Go Delete') }}</button>
+                <button class="btn btn-danger" onclick="return confirm('削除しますか?');">{{ __('Go Delete') }}</button>
               </form>
             </div>
           </div>

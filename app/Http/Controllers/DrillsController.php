@@ -67,16 +67,10 @@ class DrillsController extends Controller
 
         // dd($request);
         // problemsテーブルに値を登録するため、postデータから値を取得・設定
-        $problem['problem0'] = $request->input('problem0');
-        $problem['problem1'] = $request->input('problem1');
-        $problem['problem2'] = $request->input('problem2');
-        $problem['problem3'] = $request->input('problem3');
-        $problem['problem4'] = $request->input('problem4');
-        $problem['problem5'] = $request->input('problem5');
-        $problem['problem6'] = $request->input('problem6');
-        $problem['problem7'] = $request->input('problem7');
-        $problem['problem8'] = $request->input('problem8');
-        $problem['problem9'] = $request->input('problem9');
+        for ($i = 0; $i < 10; $i++) {
+            $problem['problem' . $i] = $request->input('problem' . $i);
+        }
+
         // dd($problem);
         $drill->problem()->save($problem->fill($request->all()));
 

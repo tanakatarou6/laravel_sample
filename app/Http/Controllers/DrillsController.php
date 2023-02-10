@@ -125,8 +125,15 @@ class DrillsController extends Controller
         // $drill = Drill::find($id);
         $drill = Auth::user()->drills()->find($id);
 
-        // $drill->fill($request->all())->save();
         Auth::user()->drills()->save($drill->fill($request->all()));
+        $drill->problem->fill($request->all())->save();
+
+        // dd($problem);
+        // dd($drill->problem);
+        // dd($drill->problem($id));
+        // dd($drill);
+        // dd($request->all());
+        // dd(Problem::find($id));
 
         return redirect('/drills')->with('flash_message', __('Updated.'));
     }

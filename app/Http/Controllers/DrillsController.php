@@ -147,10 +147,12 @@ class DrillsController extends Controller
         }
 
         // $drill = Drill::find($id);
+        $drill = Auth::user()->drills()->find($id);
         // $drill->delete();
 
         // こう書いたほうがスマート
         // Drill::find($id)->delete();
+        $drill->problem->find($id)->delete();
         Auth::user()->drills()->find($id)->delete();
 
         return redirect('/drills')->with('flash_message', __('Destroyed.'));

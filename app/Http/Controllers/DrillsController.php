@@ -91,8 +91,12 @@ class DrillsController extends Controller
         }
 
         $drill = Drill::find($id);
+        $problem = Problem::find($id);
 
-        return view('Drills.show', ['drill' => $drill]);
+        // dd($problem);
+        // dd($drill);
+
+        return view('Drills.show', ['drill' => $drill], ['problem' => $problem]);
     }
 
     // 登録済み練習問題を編集するeditアクション

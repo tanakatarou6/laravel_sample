@@ -1700,7 +1700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _master_keymap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../master/keymap */ "./resources/js/master/keymap.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['title', 'drill', 'categoryName'],
+  props: ['title', 'drill', 'problem', 'categoryName'],
   data: function data() {
     return {
       countDownNum: 3,
@@ -1726,22 +1726,22 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     // 問題テキスト
     problemText: function problemText() {
-      return this.drill['problem' + this.currentProblemNum];
+      return this.problem['problem' + this.currentProblemNum];
     },
     // 問題テキスト（配列形式）
     problemWords: function problemWords() {
-      return Array.from(this.drill['problem' + this.currentProblemNum]);
+      return Array.from(this.problem['problem' + this.currentProblemNum]);
     },
     // 問題の解答キーコード配列
     problemKeyCodes: function problemKeyCodes() {
-      if (!Array.from(this.drill['problem' + this.currentProblemNum]).length) {
+      if (!Array.from(this.problem['problem' + this.currentProblemNum]).length) {
         return null;
       }
 
       // テキストから問題のキーコード配列を生成
       var problemKeyCodes = [];
-      console.log(Array.from(this.drill['problem' + this.currentProblemNum]));
-      Array.from(this.drill['problem' + this.currentProblemNum]).forEach(function (text) {
+      console.log(Array.from(this.problem['problem' + this.currentProblemNum]));
+      Array.from(this.problem['problem' + this.currentProblemNum]).forEach(function (text) {
         $.each(_master_keymap__WEBPACK_IMPORTED_MODULE_0__["default"], function (keyText, keyCode) {
           if (text === keyText) {
             problemKeyCodes.push(keyCode);
@@ -1863,7 +1863,7 @@ var render = function render() {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-header"
-  }, [_vm._v(_vm._s(_vm.title) + " "), _c("span", {
+  }, [_vm._v(_vm._s(_vm.title)), _c("span", {
     staticClass: "badge badge-success"
   }, [_vm._v(_vm._s(_vm.categoryName))])]), _vm._v(" "), _c("div", {
     staticClass: "card-body text-center drill-body"

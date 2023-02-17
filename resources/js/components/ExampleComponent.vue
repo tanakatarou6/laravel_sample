@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ title }} <span class="badge badge-success">{{ categoryName }}</span></div>
+                    <div class="card-header">{{ title }}<span class="badge badge-success">{{ categoryName }}</span></div>
 
                     <div class="card-body text-center drill-body">
                         <button class="btn btn-primary " @click="doDrill" v-if="!isStarted">
@@ -30,7 +30,7 @@
 <script>
     import keyCodeMap from '../master/keymap'
     export default {
-        props: ['title', 'drill','categoryName'],
+        props: ['title', 'drill', 'problem', 'categoryName'],
         data: function() {
             return {
                 countDownNum: 3, // カウントダウン用
@@ -47,22 +47,22 @@
         computed: {
             // 問題テキスト
             problemText: function () {
-                return this.drill['problem' + this.currentProblemNum]
+                return this.problem['problem' + this.currentProblemNum]
             },
             // 問題テキスト（配列形式）
             problemWords: function () {
-                return Array.from(this.drill['problem' + this.currentProblemNum])
+                return Array.from(this.problem['problem' + this.currentProblemNum])
             },
             // 問題の解答キーコード配列
             problemKeyCodes: function () {
-                if(!Array.from(this.drill['problem' + this.currentProblemNum]).length){
+                if(!Array.from(this.problem['problem' + this.currentProblemNum]).length){
                     return null
                 }
 
                 // テキストから問題のキーコード配列を生成
                 let problemKeyCodes = []
-                console.log(Array.from(this.drill['problem' + this.currentProblemNum]))
-                Array.from(this.drill['problem' + this.currentProblemNum]).forEach((text) => {
+                console.log(Array.from(this.problem['problem' + this.currentProblemNum]))
+                Array.from(this.problem['problem' + this.currentProblemNum]).forEach((text) => {
                     $.each(keyCodeMap, (keyText, keyCode) => {
                         if(text === keyText){
                             problemKeyCodes.push(keyCode);

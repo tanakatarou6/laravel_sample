@@ -6,7 +6,7 @@
     {{-- expample-component はLaravelに入っているサンプルのコンポーネント --}}
 
     <example-component title="{{ __('practice') . '「' . $drill->title . '」' }}" :drill="{{ $drill }}"
-      category-name="{{ $drill->category_name }}">
+      :problem="{{ $problem }}" category-name="{{ $drill->category_name }}">
     </example-component>
   </div>
 @endsection

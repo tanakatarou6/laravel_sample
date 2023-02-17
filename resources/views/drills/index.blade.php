@@ -13,11 +13,6 @@
               <a href="{{ route('drills.show', $drill->id) }}" class="btn btn-primary">{{ __('Go Practice') }}</a>
 
               <a href="{{ route('drills.edit', $drill->id) }}" class="btn btn-warning">{{ __('Go Edit') }}</a>
-
-              <form action="{{ route('drills.delete', $drill->id) }}" class="d-inline" method="POST">
-                @csrf
-                <button class="bnt btn-danger" onclick="return confirm('削除しますか?');">{{ __('Go Delete') }}</button>
-              </form>
             </div>
           </div>
         </div>

@@ -67,16 +67,10 @@ class DrillsController extends Controller
 
         // dd($request);
         // problemsテーブルに値を登録するため、postデータから値を取得・設定
-        $problem['problem0'] = $request->input('problem0');
-        $problem['problem1'] = $request->input('problem1');
-        $problem['problem2'] = $request->input('problem2');
-        $problem['problem3'] = $request->input('problem3');
-        $problem['problem4'] = $request->input('problem4');
-        $problem['problem5'] = $request->input('problem5');
-        $problem['problem6'] = $request->input('problem6');
-        $problem['problem7'] = $request->input('problem7');
-        $problem['problem8'] = $request->input('problem8');
-        $problem['problem9'] = $request->input('problem9');
+        for ($i = 0; $i < 10; $i++) {
+            $problem['problem' . $i] = $request->input('problem' . $i);
+        }
+
         // dd($problem);
         $drill->problem()->save($problem->fill($request->all()));
 
@@ -97,8 +91,12 @@ class DrillsController extends Controller
         }
 
         $drill = Drill::find($id);
+        $problem = Problem::find($id);
 
-        return view('Drills.show', ['drill' => $drill]);
+        // dd($problem);
+        // dd($drill);
+
+        return view('Drills.show', ['drill' => $drill], ['problem' => $problem]);
     }
 
     // 登録済み練習問題を編集するeditアクション
@@ -131,8 +129,15 @@ class DrillsController extends Controller
         // $drill = Drill::find($id);
         $drill = Auth::user()->drills()->find($id);
 
-        // $drill->fill($request->all())->save();
         Auth::user()->drills()->save($drill->fill($request->all()));
+        $drill->problem->fill($request->all())->save();
+
+        // dd($problem);
+        // dd($drill->problem);
+        // dd($drill->problem($id));
+        // dd($drill);
+        // dd($request->all());
+        // dd(Problem::find($id));
 
         return redirect('/drills')->with('flash_message', __('Updated.'));
     }
@@ -146,10 +151,12 @@ class DrillsController extends Controller
         }
 
         // $drill = Drill::find($id);
+        $drill = Auth::user()->drills()->find($id);
         // $drill->delete();
 
         // こう書いたほうがスマート
         // Drill::find($id)->delete();
+        $drill->problem->find($id)->delete();
         Auth::user()->drills()->find($id)->delete();
 
         return redirect('/drills')->with('flash_message', __('Destroyed.'));
